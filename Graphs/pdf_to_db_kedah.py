@@ -2,7 +2,7 @@ import pdfplumber
 import sqlite3
 
 # 1. Setup Database
-conn = sqlite3.connect('Nahrim_Database_final.db')
+conn = sqlite3.connect('../Database/Nahrim_Database_final.db')
 cursor = conn.cursor()
 cursor.execute('DROP TABLE IF EXISTS rainfall_Kedah_visualcrossing')
 cursor.execute('''

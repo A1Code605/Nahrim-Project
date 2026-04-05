@@ -3,7 +3,7 @@ import sqlite3
 import time
 
 # 1. Connect to your database
-conn = sqlite3.connect('Nahrim_Database_final.db')
+conn = sqlite3.connect('../Database/Nahrim_Database_final.db')
 cursor = conn.cursor()
 
 # 2. Get your unique coordinates from your existing table

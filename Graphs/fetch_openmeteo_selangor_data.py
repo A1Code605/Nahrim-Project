@@ -3,7 +3,7 @@ import sqlite3
 import time
 
 # 1. Connect to your existing database
-conn = sqlite3.connect('Nahrim_Database_final.db')
+conn = sqlite3.connect('../Database/Nahrim_Database_final.db')
 cursor = conn.cursor()
 
 # 2. Create a table for the NEW data source (Open-Meteo)

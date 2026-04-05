@@ -2,7 +2,7 @@ import pdfplumber
 import sqlite3
 
 # 1. Setup Database
-conn = sqlite3.connect('Nahrim_Database_final.db')
+conn = sqlite3.connect('../Database/Nahrim_Database_final.db')
 cursor = conn.cursor()
 cursor.execute('DROP TABLE IF EXISTS rainfall_selangor_visualcrossing')
 cursor.execute('''
@@ -13,7 +13,7 @@ cursor.execute('''
     )
 ''')
 
-pdf_path = "RF_Slgr_Wlyh_Mac_May_2026_AveRCP.pdf" # Make sure this matches your file name!
+pdf_path = "Graphs/RF_Slgr_Wlyh_Mac_May_2026_AveRCP.pdf" # Make sure this matches your file name!
 
 print("Starting extraction...")
 
