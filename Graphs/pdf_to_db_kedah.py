@@ -13,7 +13,7 @@ cursor.execute('''
     )
 ''')
 
-pdf_path = "RF_Kedah_Mac_May_2026_AveRCP (5).pdf" # Make sure this matches your file name!
+pdf_path = "RF_Kedah_Mac_May_2026_AveRCP.pdf" # Make sure this matches your file name!
 
 print("Starting extraction...")
 
