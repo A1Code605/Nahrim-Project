@@ -58,8 +58,8 @@ def rainfall():
     conn.close()
 
     return jsonify({
-        'kedah': [{'date': f"{row[0]:02d}-{row[1]:02d}", 'rainfall': row[2]} for row in kedah_data],
-        'selangor': [{'date': f"{row[0]:02d}-{row[1]:02d}", 'rainfall': row[2]} for row in selangor_data]
+        'kedah': [{'date': f"{row[0]}-{row[1]}", 'rainfall': row[2]} for row in kedah_data],
+        'selangor': [{'date': f"{row[0]}-{row[1]}", 'rainfall': row[2]} for row in selangor_data]
     })    
 
 @app.route('/rainfall/openmeteo')
@@ -83,8 +83,8 @@ def rainfall_openmeteo():
     conn.close()
 
     return jsonify ({
-    'kedah': [{'date': f"{row[0]:02d}-{row[1]:02d}", 'rainfall': row[2]} for row in kedah_data],
-    'selangor': [{'date': f"{row[0]:02d}-{row[1]:02d}", 'rainfall': row[2]} for row in selangor_data]
+    'kedah': [{'date': f"{row[0]}-{row[1]}", 'rainfall': row[2]} for row in kedah_data],
+    'selangor': [{'date': f"{row[0]}-{row[1]}", 'rainfall': row[2]} for row in selangor_data]
     })
 
 @app.route('/rainfall/nahrim')
@@ -93,21 +93,21 @@ def rainfall_nahrim():
     cursor = conn.cursor()
     
     cursor.execute(""" 
-                    SELECT Month, Day, AVG("Ave_RCP2.6"), AVG("Ave_RCP4.5"), AVG("Ave_RCP6.0"), AVG("Ave_RCP8.5")
-                    FROM rainfall_Kedah_Nahrim
+                    SELECT Month, Day, AVG(Average_RCP)
+                    FROM rainfall_Kedah_NAHRIM
                     GROUP BY Month, Day 
                     ORDER BY Month, Day """)
     kedah_data = cursor.fetchall()
     cursor.execute("""
-                    SELECT Month, Day, AVG("Ave_RCP2.6"), AVG("Ave_RCP4.5"), AVG("Ave_RCP6.0"), AVG("Ave_RCP8.5")
-                    FROM rainfall_Selangor_Nahrim
+                    SELECT Month, Day, AVG(Ave_RCP)
+                    FROM rainfall_Selangor_NAHRIM
                     GROUP BY Month, Day 
                     ORDER BY Month, Day """)                   
     selangor_data = cursor.fetchall()
     conn.close()
-    return jsonify({
-        'kedah': [{'date': f"{row[0]:02d}-{row[1]:02d}", 'rcp26': row[2], 'rcp45': row[3], 'rcp60':row[4], 'rcp85': row[5]} for row in kedah_data],
-        'selangor': [{'date': f"{row[0]:02d}-{row[1]:02d}", 'rcp26': row[2], 'rcp45': row[3], 'rcp60':row[4], 'rcp85': row[5]} for row in selangor_data]
+    return jsonify ({
+    'kedah': [{'date': f"{row[0]}-{row[1]}", 'avg': row[2]} for row in kedah_data],
+    'selangor': [{'date': f"{row[0]}-{row[1]}", 'avg': row[2]} for row in selangor_data]
     })
 
 if __name__ == '__main__':
