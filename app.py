@@ -16,6 +16,10 @@ def map_page():
 def data_page():
     return render_template('data.html')
 
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
 @app.route('/hospitals')
 def hostpitals():
     conn = sqlite3.connect(DB)

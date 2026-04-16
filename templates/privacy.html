@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map of Hospitals in Selangor and Kedah Region</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/stylesheet.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+    <div class="navbar">
+         <img src="{{ url_for('static', filename='Images/logonahrimwebsite.png') }}" alt="Nahrim Logo" class="navbar-logo" height="100" width="400" onclick="window.location.href='/'">
+        <a href="/">Home</a>
+        <a href="/map">Map</a>
+        <a href="/data">Data Sets</a>
+        <a href="/privacy">Privacy</a>
+    </div>
+    <div id="privacy">
+        <h1>Privacy Policy</h1>
+            <p>Last Updated: 1st Apr 2026</p>          
+       <hr>
+       <h1>Introduction</h1>
+        <p>
+            This Privacy Policy describes how [NAHRIM RAINFALL SYSTEM MANAGEMENT] gathers, utilises, stores, and discloses your personal
+             information in relation to the centralised rainfall data dashboard and associated services, such as the admin dashboard for
+              hospital data management and the public rainfall visualisation.
+            You agree to the processing of your personal data in compliance with 
+            this policy, the Personal Data Protection Act 2010 (Malaysia), and any applicable laws
+             and guidelines by using or accessing the Service. If you live in Malaysia, you have the following rights 
+             under the PDPA regarding your personal information.
+        </p>
+        <h1>Key Principles of Privacy Policy </h1>
+        <p>
+            The Personal Data Protection Act 2010 (Malaysia) outlines several key principles that govern the collection, use, and disclosure of personal data. 
+            These principles are designed to protect the privacy rights of individuals and ensure that organizations handle personal data responsibly. 
+            <br>The key principles include:<br> 
+            please click on the following headers to expand and view the details of each principle.
+        </p>        
+        <h2>Scope</h2> 
+        <div class="section">      
+           <p>
+            This Privacy Policy applies to all users of the NAHRIM RAINFALL 
+            SYSTEM MANAGEMENT, including but not limited to:
+            </p>
+            <ul>
+                <li>Visitors to the public rainfall dashboard and map visualisation.</li>
+                <li>Admins managing hospital data through the admin dashboard.</li>   
+            </ul>
+           <span> By using our services, you acknowledge that you have read and understood this Privacy Policy and agree to be bound by its terms.
+          If you do not agree with this policy, please do not use our services.</span>
+        </div>       
+        <h2>Information We Collect</h2>
+        <div class="section">
+          <p>
+            although we do not collect personally identifiable information such as names, email addresses, or phone numbers,
+             we may collect certain types of non-personal information to improve our services and provide a better user experience.
+              We may collect the following types of information:
+          </p>
+            <ul>
+                <li><strong>Usage Data:</strong> Information about how you interact with our services, including IP address, browser type,
+                     and pages visited.</li>
+                <li><strong>Location Data:</strong> If you allow location access, we may collect information about your geographic location 
+                    to provide location-based services.</li>
+                <li><strong>Hospital Data:</strong> For admins managing hospital data, we may collect 
+                    information related to hospital operations, such as patient counts and resource availability.</li>
+            </ul>
+
+             <span>We only collect personal information that is necessary for the purposes outlined in this Privacy Policy.</span>
+        </div>
+        <h2>Use of Information</h2>
+        <div class="section">
+         <p>
+            We use the information we collect for the following purposes:
+         </p>
+            <ul>
+                <li><strong>To Provide and Improve Services:</strong> We use the collected information to operate, maintain, and enhance our services.</li>
+                <li><strong>To Communicate with Users:</strong> We may use your information to respond to inquiries, provide support, and send important updates about our services.</li>
+                <li><strong>To Ensure Security:</strong> We may use the collected information to monitor and prevent fraudulent activities and ensure the security of our services.</li>
+            </ul>
+             <span>We do not sell, rent, or share your personal information with third parties for their marketing purposes.</span>
+        </div>
+        <h2>Data Security</h2>
+        <div class="section">
+         <p>
+            We take reasonable measures to protect the information we collect from unauthorized access, disclosure, alteration, and destruction. 
+            However, no method of transmission over the internet or method of electronic storage is 100% secure. Therefore, we cannot guarantee 
+            absolute security.
+             You are responsible for maintaining the confidentiality of any login credentials and for any activities that occur under your account.
+          </p>
+        </div>
+        <h2>Data Retention</h2>
+        <div class="section">
+        <p>
+            We retain the information we collect for as long as necessary to fulfill the purposes outlined in this Privacy Policy, 
+            unless a longer retention period is required or permitted by law. 
+            We will delete or anonymize your information when it is no longer needed for these purposes.
+        </p>
+        </div>
+        <h2 >Updates to This Privacy Policy</h2>
+        <div class="section">
+        <p>
+            We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational,
+             legal, or regulatory reasons. 
+            We will notify you of any changes by posting the new 
+            Privacy Policy on this page and updating the "Last Updated" date at the top of this policy. 
+            You are advised to review this Privacy Policy periodically for any changes.
+            Your continued use of our services after the posting of any changes constitutes acceptance of those changes.
+        </p>
+        </div>
+        <h2 >Contact Us</h2>
+        <div class="section">
+        <p>
+            If you have any questions about this Privacy Policy, please contact us at:
+            <ul>
+                <li>Email: nahrim@hospital.system.org</li>
+                <li>Telephone: +60 1222 3333</li>
+            </ul>
+        </p>
+        </div>
+        <h1>For more information about the Key Principles of PDPA(2010)</h1>
+        <p>please refer to the Personal Data Protection Act 2010 (Malaysia) for the full text of the 
+            key principles.</p>
+
+    </div>
+    <h2 class="ref">References:</h2>
+    <ul>
+        <li><a href="https://www.pdp.gov.my/jpdpv2/assets/files/Personal_Data_Protection_Act_2010.pdf">
+            Personal Data Protection Act 2010 (Malaysia)</a></li>
+       
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='JS/map.js') }}"></script>
+</body>
+</html>
+<script>
+document.querySelectorAll('#privacy h2').forEach(header => {
+    header.addEventListener('click', () => {
+        header.classList.toggle('active');
+        const section = header.nextElementSibling;
+        if (section && section.classList.contains('section')) {
+            section.classList.toggle('active');
+        }
+    });
+});
+</script>

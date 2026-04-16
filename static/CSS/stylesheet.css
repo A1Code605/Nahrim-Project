@@ -181,3 +181,62 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08)
 }
+#privacy {
+    max-width: 1350px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    color: #0d1b3e;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+#privacy h1 {
+    font-size: 30px;
+    font-style: italic;
+    margin-bottom: 20px;
+    color: black;
+    text-align: center;
+    
+}
+
+#privacy h2 {
+    font-size: 22px;
+    margin: 20px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #0d1b3e;
+}
+
+#privacy h2::after {
+    content: "+";
+    font-size: 20px;
+}
+
+#privacy h2.active::after {
+    content: "−";
+}
+
+.section {
+    display: none;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.section.active {
+    display: block;
+}
+
+#privacy p,
+#privacy span,
+#privacy ul {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+#privacy ul {
+    padding-left: 20px;
+}
