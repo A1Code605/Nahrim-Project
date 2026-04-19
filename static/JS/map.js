@@ -28,8 +28,56 @@ fetch('/hospitals')
         hospitals.forEach(function(h) {
             L.marker([h.lat, h.lng])
             .addTo(mapKedah)
+            .bindPopup('<b>' + h.name + '</b></br>' + h.type)
             L.marker([h.lat, h.lng])
             .addTo(mapSelangor)
             .bindPopup('<b>' + h.name + '</b></br>' + h.type);
         });
     });
+
+var heatmapLayer1 = null;
+var heatmapLayer2 = null;
+var heatmapDisplay = false;
+
+function toggleHeatmap() {
+    if (heatmapDisplay) {
+        if (heatmapLayer1) mapKedah.removeLayer(heatmapLayer1);
+        heatmapDisplay = false;
+        if (heatmapLayer2) mapSelangor.removeLayer(heatmapLayer2);
+        heatmapDisplay = false;
+        document.getElementById('heatmapBtn').textContent = 'Show Heatmap';
+    } else {
+        fetch('/heatmap')
+            .then(response => response.json())
+            .then(function(data){
+                var kedahPoints = data.kedah.map(d => [parseFloat(d.lat), parseFloat(d.lon), parseFloat(d.intensity)]);
+                var selangorPoints = data.selangor.map(d => [parseFloat(d.lat), parseFloat(d.lon), parseFloat(d.intensity)]);
+                heatmapLayer1 = L.heatLayer(kedahPoints, { 
+                    radius: 30, 
+                    blur: 20,
+                    max: 1.0,
+                    minOpacity: 0.5,
+                    gradient: {
+                        0.2: 'blue',  
+                        0.5: 'lime', 
+                        0.8: 'yellow', 
+                        1.0: 'red'
+                    }
+                }).addTo(mapKedah);
+                heatmapLayer2 = L.heatLayer(selangorPoints, { 
+                    radius: 30, 
+                    blur: 20,
+                    max: 1.0,
+                    minOpacity: 0.5,
+                    gradient: {
+                        0.2: 'blue',  
+                        0.5: 'lime', 
+                        0.8: 'yellow', 
+                        1.0: 'red'
+                    }
+                }).addTo(mapSelangor);
+                heatmapDisplay = true;
+                document.getElementById('heatmapBtn').textContent = 'Hide Heatmap';
+            });
+    }
+}

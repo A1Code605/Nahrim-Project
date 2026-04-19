@@ -12,10 +12,6 @@ def home():
 def map_page(): 
     return render_template('map.html')
 
-@app.route('/data')
-def data_page():
-    return render_template('data.html')
-
 @app.route('/hospitals')
 def hostpitals():
     conn = sqlite3.connect(DB)
@@ -108,6 +104,32 @@ def rainfall_nahrim():
     return jsonify ({
     'kedah': [{'date': f"{row[0]}-{row[1]}", 'avg': row[2]} for row in kedah_data],
     'selangor': [{'date': f"{row[0]}-{row[1]}", 'avg': row[2]} for row in selangor_data]
+    })
+
+@app.route('/heatmap')
+def heatmap():
+    conn = sqlite3.connect(DB)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT Latitude, Longitude, AVG(Average_RCP)
+        FROM rainfall_Kedah_NAHRIM
+        GROUP BY Latitude, Longitude """) 
+    kedah_data = cursor.fetchall()
+
+    cursor.execute("""
+        SELECT Latitude, Longitude, AVG(Ave_RCP)
+        FROM rainfall_Selangor_NAHRIM
+        GROUP BY Latitude, Longitude """)
+    selangor_data = cursor.fetchall()
+    conn.close()
+
+    all_values = [row[2] for row in kedah_data] + [row[2] for row in selangor_data]
+    max_val = max(all_values) if all_values else 1
+
+    return jsonify ({
+        'kedah': [{'lat': row[0], 'lon': row[1], 'intensity': row[2] / max_val} for row in kedah_data],
+        'selangor': [{'lat': row[0], 'lon': row[1], 'intensity': row[2] / max_val} for row in selangor_data],        
     })
 
 if __name__ == '__main__':

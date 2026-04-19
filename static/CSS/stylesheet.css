@@ -147,7 +147,7 @@ body {
 }
 
 .map-box p {
-    color: #0d1b3e;
+    color: #f0f4fa;
     font-size: 15px;
     letter-spacing: 1px;
     font-family: Arial, Helvetica, sans-serif;
@@ -173,11 +173,60 @@ body {
     background: #aad3df;
 }
 
+.chart-row{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
 .chart {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08)
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    height: 280px;
+}
+
+.graph-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #0d1b3e;
+}
+
+.graph-controls select {
+    padding: 6px 12px;
+    border: 1px solid #e0e7f0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #0d1b3e;
+    outline: none;
+    cursor: pointer;
+}
+
+.heatmap-btn {
+    background-color: #0d1b3e;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#heatmapBtn {
+    background-color: #4a90d9;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#heatmapBtn:hover {
+    background-color: #1e3264;
 }
