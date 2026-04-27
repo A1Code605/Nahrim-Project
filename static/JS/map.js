@@ -28,10 +28,10 @@ fetch('/hospitals')
         hospitals.forEach(function(h) {
             L.marker([h.lat, h.lng])
             .addTo(mapKedah)
-            .bindPopup('<b>' + h.name + '</b></br>' + h.type)
+            .bindPopup('<b>' + h.name + '</b></br>' + h.type + d.intensity)
             L.marker([h.lat, h.lng])
             .addTo(mapSelangor)
-            .bindPopup('<b>' + h.name + '</b></br>' + h.type);
+            .bindPopup('<b>' + h.name + '</b></br>' + h.type + d.intensity);
         });
     });
 
@@ -56,7 +56,7 @@ function toggleHeatmap() {
                     radius: 30, 
                     blur: 20,
                     max: 1.0,
-                    minOpacity: 0.5,
+                    minOpacity: 0.4,
                     gradient: {
                         0.2: 'blue',  
                         0.5: 'lime', 
@@ -68,7 +68,7 @@ function toggleHeatmap() {
                     radius: 30, 
                     blur: 20,
                     max: 1.0,
-                    minOpacity: 0.5,
+                    minOpacity: 0.4,
                     gradient: {
                         0.2: 'blue',  
                         0.5: 'lime', 
